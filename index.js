@@ -17,12 +17,17 @@ app.post("/mintNFT", async (req, res) => {
 
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
   const beGreen = new ethers.Contract(process.env.BEGREEN_CONTRACT_ADDRESS, beGreenABI, wallet);
-  const txReceipt = await beGreen.safeMint(address,"https://silver-sound-gamefowl-947.mypinata.cloud/ipfs/QmS1xfi6s5c5xLM2PqX7xqScmtT41QKfEXty6ygR9kLhNj");
+  let txReceipt;
+  try {
+      txReceipt = await beGreen.safeMint(address,"https://silver-sound-gamefowl-947.mypinata.cloud/ipfs/QmS1xfi6s5c5xLM2PqX7xqScmtT41QKfEXty6ygR9kLhNj");
+  } catch (error) {
+      console.log(error);
+  }
 
-  if (response) {
+  if (txReceipt) {
     res.status(200).json({ txReceipt });
   } else {
-    res.status(400).json({ message: "Data not found" });
+    res.status(400).json({ message: "Some error happened" });
   }
 });
 
