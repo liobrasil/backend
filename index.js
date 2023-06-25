@@ -4,11 +4,12 @@ const formidableMiddleware = require("express-formidable");
 const app = express();
 app.use(formidableMiddleware());
 const cors = require("cors");
+const { ethers } = require("ethers");
+const beGreenABI = require("./BeGreen.json");
+
 app.use(cors({
   origin: '*'
 }));
-const { ethers } = require("ethers");
-const beGreenABI = require("./BeGreen.json");
 
 const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.gateway.tenderly.co")
 
