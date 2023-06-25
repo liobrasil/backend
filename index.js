@@ -11,6 +11,11 @@ app.use(cors({
   origin: '*'
 }));
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.gateway.tenderly.co")
 
 app.post("/mintNFT", async (req, res) => {
