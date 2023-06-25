@@ -20,7 +20,7 @@ app.post("/mintNFT", async (req, res) => {
   const txReceipt = await beGreen.safeMint(address,"https://silver-sound-gamefowl-947.mypinata.cloud/ipfs/QmS1xfi6s5c5xLM2PqX7xqScmtT41QKfEXty6ygR9kLhNj");
 
   if (response) {
-    res.status(200).json({ txId: txReceipt });
+    res.status(200).json({ txReceipt });
   } else {
     res.status(400).json({ message: "Data not found" });
   }
