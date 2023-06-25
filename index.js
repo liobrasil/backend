@@ -3,6 +3,10 @@ const express = require("express");
 const formidableMiddleware = require("express-formidable");
 const app = express();
 app.use(formidableMiddleware());
+const cors = require("cors");
+app.use(cors({
+  origin: '*'
+}));
 const { ethers } = require("ethers");
 const beGreenABI = require("./BeGreen.json");
 
