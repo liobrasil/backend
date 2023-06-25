@@ -6,10 +6,9 @@ app.use(formidableMiddleware());
 const { ethers } = require("ethers");
 const beGreenABI = require("./BeGreen.json");
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+const cors = require('cors')
+app.use(cors())
+app.options('*', cors())
 
 const provider = new ethers.providers.JsonRpcProvider("https://polygon-mumbai.gateway.tenderly.co")
 
