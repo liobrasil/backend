@@ -3,13 +3,8 @@ const express = require("express");
 const formidableMiddleware = require("express-formidable");
 const app = express();
 app.use(formidableMiddleware());
-const cors = require("cors");
 const { ethers } = require("ethers");
 const beGreenABI = require("./BeGreen.json");
-
-app.use(cors({
-  origin: '*'
-}));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
